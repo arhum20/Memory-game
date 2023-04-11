@@ -1,16 +1,24 @@
-<!DOCTYPE html>
-<html>
+html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
+    <title>Adjustable World Map</title>
+    <style>
+      #map {
+        width: 100%;
+        height: auto;
+        max-width: 800px;
+      }
+    </style>
   </head>
   <body>
-    <script src="script.js"></script>
-    <script src="endscreens.js"></script>
-    <script src="winscreen.js"></script>
-    <script src="losescreen.js"></script>
+    <img id="map" src="https://www.w3schools.com/images/picture.jpg" alt="World Map">
+    <script>
+      // JavaScript code to add interactivity
+      var map = document.getElementById("map");
+      map.addEventListener("click", function(event) {
+        var x = event.clientX - map.offsetLeft;
+        var y = event.clientY - map.offsetTop;
+        console.log("Clicked at (" + x + ", " + y + ")");
+      });
+    </script>
   </body>
 </html>
