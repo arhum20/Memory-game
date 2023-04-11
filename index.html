@@ -1,4 +1,5 @@
-
+<!DOCTYPE html>
+<html>
   <head>
     <title>Adjustable World Map</title>
     <style>
@@ -10,15 +11,25 @@
     </style>
   </head>
   <body>
-    <img id="map" src="https://static.vecteezy.com/system/resources/previews/013/079/157/non_2x/doodle-freehand-drawing-of-world-map-free-png.png" alt="World Map">
+    <canvas id="canvas" width="800" height="533"></canvas>
     <script>
-      // JavaScript code to add interactivity
-      var map = document.getElementById("map");
-      map.addEventListener("click", function(event) {
-        var x = event.clientX - map.offsetLeft;
-        var y = event.clientY - map.offsetTop;
-        console.log("Clicked at (" + x + ", " + y + ")");
-      });
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      var img = new Image();
+      img.onload = function() {
+        // Draw the original image on the canvas
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        // Change the color of a certain area
+        var imageData = ctx.getImageData(100, 100, 200, 200);
+        for (var i = 0; i < imageData.data.length; i += 4) {
+          // Change the red, green, and blue values of the pixels in the area
+          imageData.data[i] = 255; // Red
+          imageData.data[i+1] = 0; // Green
+          imageData.data[i+2] = 0; // Blue
+        }
+        ctx.putImageData(imageData, 100, 100);
+      };
+      img.src = "https://static.vecteezy.com/system/resources/previews/013/079/157/non_2x/doodle-freehand-drawing-of-world-map-free-png.png";
     </script>
   </body>
 </html>
